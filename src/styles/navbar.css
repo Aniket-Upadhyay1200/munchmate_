@@ -1,0 +1,25 @@
+/* navbar.css */
+.nav_box {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+  }
+  
+  .my_shop {
+    margin-right: auto; /* Ensure logo stays on the left */
+  }
+  
+  .cart {
+    margin-right: 20px; /* Adjust this value to move the cart button towards the left */
+  }
+  
+  .my_orders {
+    margin-right: 20px; /* Adjust this value to move 'My Orders' button towards the left */
+  }
+  
+  /* Adjust logo size if needed */
+  .logo {
+    width: 80px; /* Adjust width as needed */
+    height: auto;
+  }
+  

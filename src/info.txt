@@ -1,0 +1,97 @@
+import React , {useState} from 'react';
+import Navbar from './components/Navbar';
+import Amazon from './components/Amazon';
+import Cart from './components/Cart';
+import './styles/amazon.css';
+import Orders from './components/Orders'
+
+
+const App = () => {
+	const [show, setShow] = useState(true);
+	const [cart , setCart] = useState([]);
+	const [warning, setWarning] = useState(false);
+	const [orderView,setOrderView] = useState(false);
+
+	const [orders, setOrders] = useState([]);
+
+	const handleClick = (item)=>{
+		let isPresent = false;
+		cart.forEach((product)=>{
+			if (item.id === product.id)
+			isPresent = true;
+		})
+		if (isPresent){
+			setWarning(true);
+			setTimeout(()=>{
+				setWarning(false);
+			}, 2000);
+			return ;
+		}
+		setCart([...cart, item]);
+	}
+
+	const handleChange = (item, d) =>{
+		let ind = -1;
+		cart.forEach((data, index)=>{
+			if (data.id === item.id)
+				ind = index;
+		});
+		const tempArr = cart;
+		tempArr[ind].amount += d;
+		
+		if (tempArr[ind].amount === 0)
+			tempArr[ind].amount = 1;
+		setCart([...tempArr])
+	}
+
+	function handleOrder(cart) {
+        // Generate a unique order ID (for example purposes, use timestamp)
+        const orderId = new Date().getTime();
+
+        // Create new order object
+        const newOrder = {
+            id: orderId,
+            items: cart,
+            totalPrice: cart.reduce((total, item) => total + (item.price * item.amount), 0),
+        };
+
+        // Append new order to existing orders
+        setOrders([...orders, newOrder]);
+
+        // Clear the cart
+        setCart([]);
+    }
+
+
+  return (
+	<React.Fragment>
+		{/* <Navbar size={cart.length} setShow={(value) => {
+                    setShow(value);
+                    setOrderView(false); // Ensure Orders view is reset when switching back to Amazon/Cart
+                }}
+                setOrderView={(value) => {
+                    setShow(false); // Ensure Amazon/Cart view is hidden when switching to Orders
+                    setOrderView(value);
+                }}/>
+		{
+			show ? (<Amazon handleClick={handleClick} />) : 
+			orderView?(
+				<Orders orders={orders}></Orders>
+			):(
+			
+			<Cart cart={cart} setCart={setCart} handleChange={handleChange} handleOrder={handleOrder}/>
+			
+			)
+		}
+		
+		{
+			warning && <div className='warning'>Item is already added to your cart</div>
+		}
+		 */}
+		
+
+	</React.Fragment>
+  )
+}
+
+export default App

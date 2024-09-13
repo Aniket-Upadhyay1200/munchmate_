@@ -1,0 +1,32 @@
+/* orders.css */
+.orders_container {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+.order_item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.order_img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    margin-right: 20px;
+}
+
+.order_details {
+    flex-grow: 1;
+}
+
+.order_total {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.order_info {
+    margin-bottom: 20px;
+}
